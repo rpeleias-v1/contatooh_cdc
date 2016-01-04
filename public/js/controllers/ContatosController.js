@@ -1,26 +1,33 @@
-angular.module('contatooh').controller('ContatosController', function($scope){
-	$scope.total = 0;
-	$scope.incrementa = function(){
-		$scope.total++;
-	};
-
-	$scope.contatos = [
-		{
-			"_id": 1,
-			"nome": "Contato Angular 1",
-			"email": "contato1@empresa.com.br"
-		},
-		{
-			"_id": 2,
-			"nome": "Contato Angular 2",
-			"email": "contato2@empresa.com.br"
-		},
-		{
-			"_id": 3,
-			"nome": "Contato Angular 3",
-			"email": "contato3@empresa.com.br"
-		}
-	];
-
+angular.module('contatooh').controller('ContatosController', function($scope, $resource){	
+	$scope.contatos = [];
 	$scope.filtro = '';
+	$scope.mensagem = {texto: ''};
+
+	var Contato = $resource('/contatos/:id');
+	
+	function buscaContatos(){
+		Contato.query(function(contatos){
+			$scope.contatos = contatos;
+			$scope.mensagem = {};
+		}, function(erro){			
+			console.log(erro);
+			$scope.mensagem = {
+				texto: 'Não foi possível obter a lista de contatos'
+			};
+		});	
+	}
+	buscaContatos();
+
+	$scope.remove = function(contato) {
+		console.log(contato._id);
+		Contato.delete({id: contato._id},
+		buscaContatos,
+		function(erro){
+			$scope.mensagem = {
+				texto: 'Não foi possível remover o contato'
+			};		
+			console.log(erro);
+		});
+	};
+	
 });
