@@ -1,9 +1,7 @@
-angular.module('contatooh').controller('ContatosController', function($scope, $resource){	
+angular.module('contatooh').controller('ContatosController', function($scope, Contato){	
 	$scope.contatos = [];
 	$scope.filtro = '';
-	$scope.mensagem = {texto: ''};
-
-	var Contato = $resource('/contatos/:id');
+	$scope.mensagem = {texto: ''};	
 	
 	function buscaContatos(){
 		Contato.query(function(contatos){
@@ -18,8 +16,7 @@ angular.module('contatooh').controller('ContatosController', function($scope, $r
 	}
 	buscaContatos();
 
-	$scope.remove = function(contato) {
-		console.log(contato._id);
+	$scope.remove = function(contato) {		
 		Contato.delete({id: contato._id},
 		buscaContatos,
 		function(erro){
