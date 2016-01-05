@@ -1,6 +1,7 @@
 var express = require('express');
 var load = require('express-load');
 var bodyParser = require('body-parser');
+var helmet = require('helmet');
 
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
@@ -30,9 +31,24 @@ module.exports = function() {
 	app.use(passport.initialize());
 	app.use(passport.session());
 
+	app.disable('x-powered-by');
+	//app.use(helmet.hidePoweredBy({setTo: 'PHP 5.5.14'}));
+
+	//middleware para evitar clickjackin - ação indevida em app dentro de frame e iframe
+	app.use(helmet.xframe());
+	app.use(helmet.xssFilter());
+
+	//não permite que o browser infira o MIME Type
+	app.use(helmet.nosniff());
+
 	load('models', {cwd: 'app'})
 		.then('controllers')
 		.then('routes')
 		.into(app);	
+
+	app.get('*', function(req, res){
+		res.status(404).render('404');
+	});
+	
 	return app;
 }
