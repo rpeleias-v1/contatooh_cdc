@@ -15,7 +15,7 @@ module.exports = function(uri) {
 		console.log("Mongoose! Erro na conexão: " + erro);
 	});
 
-	process.on('SIGINT', function(){
+	process.on('SIGINIT', function(){
 		mongoose.connection.close(function(){
 			console.log('Mongoose! Desconectado pelo término da aplicação');
 			process.exit(0);
