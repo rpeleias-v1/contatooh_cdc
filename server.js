@@ -1,5 +1,6 @@
 var http = require('http');
 var app = require('./config/express')();
+var passport = require('./config/passport')();
 var mongoose = require('./config/database')('mongodb://localhost/contatooh');
 
 http.createServer(app).listen(app.get('port'), function(){

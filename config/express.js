@@ -2,6 +2,10 @@ var express = require('express');
 var load = require('express-load');
 var bodyParser = require('body-parser');
 
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var passport = require('passport');
+
 module.exports = function() {
 	var app = express();
 	app.set('port', 3000);
@@ -14,6 +18,17 @@ module.exports = function() {
 	app.use(bodyParser.urlencoded({extended: true}));
 	app.use(bodyParser.json());
 	app.use(require('method-override')());
+
+	//sessão so express deve vir sempre antes de init pe passport
+	//garantia que a sessão de login seja restaurada na ordem certa
+	app.use(cookieParser());
+	app.use(session({
+		secret: 'homem primata',
+		resave: true,
+		saveUninitialized: true
+	}));
+	app.use(passport.initialize());
+	app.use(passport.session());
 
 	load('models', {cwd: 'app'})
 		.then('controllers')
