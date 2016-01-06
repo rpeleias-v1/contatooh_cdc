@@ -1,8 +1,8 @@
 module.exports = {
 	env: 'test',
 	db: 'mongodb://localhost/contatooh_test',
-	sauceTestName: process.env.SAUCE_USERNAME,
-	sauceUser: process.env.SAUCE_ACCESS_KEY,
+	sauceTestName: '@rpeleias Contatooh test',
+	sauceUser: process.env.SAUCE_USERNAME,
 	sauceKey: process.env.SAUCE_ACCESS_KEY,
 	travisJobNumber: process.env.TRAVIS_BUILD_NUMBER,
 	travisBuild: process.env.TRAVIS_BUILD_NUMBER,
