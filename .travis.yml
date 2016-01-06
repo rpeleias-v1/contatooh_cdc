@@ -13,4 +13,4 @@ before_install:
 before_script:
   - grunt
   - cd dist
-  - karma start config/karma.config.js --single-run --browsers PhantomJS
+  - karma start config/karma.config.js --single-run --browsers PhantomJS  
