@@ -1,6 +1,6 @@
 language: node.js
 node_js:
-  - 0.10
+  - 4.2.4
 notifications:
   - rpeleias@hotmail.com
 before_install:
