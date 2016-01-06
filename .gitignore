@@ -3,3 +3,6 @@ bower_components
 public/vendor/
 dist
 .tmp
+scripts/
+.DS_Store
+.DS_Store?
