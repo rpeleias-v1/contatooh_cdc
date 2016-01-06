@@ -6,3 +6,5 @@ dist
 scripts/
 .DS_Store
 .DS_Store?
+server.sh
+test.sh
