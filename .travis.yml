@@ -2,7 +2,7 @@ language: node.js
 notifications:
   - rpeleias@hotmail.com
 node_js:
-  - 4.2.4
+  - 0.10
 services:
   - mongodb
 env:
