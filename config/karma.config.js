@@ -76,7 +76,7 @@ module.exports = function(config) {
         'karma-ng-html2js-preprocessor',
         'karma-chrome-launcher',
         'karma-phantomjs-launcher',
-        'karma-jasmine',
+        'karma-jasmine'
     ],
 
     ngHtml2JsPreprocessor: {
